@@ -91,6 +91,17 @@ app.post('/create-page', (req, res) => {
 
 
 
+app.delete('/delete-page/:pageName', (req, res) => {
+    const pageName = req.params.pageName;
+    const filePath = path.join(__dirname, 'pages', pageName);
+
+    fs.unlink(filePath, err => {
+        if (err) return res.status(500).send('Error deleting page');
+        res.send('Page deleted');
+    });
+});
+
+
 
 
 

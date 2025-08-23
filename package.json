@@ -1,12 +1,12 @@
 {
   "name": "rg-notebook",
   "version": "1.0.0",
-  "description": "Employee used this application to memorise during work",
+  "description": "Employee used this application to memorise during work. anything which need to not easily can save here.",
   "main": "index.html",
   "scripts": {
     "start": "nodemon server"
   },
-  "author": "rajibganguly",
+  "author": "rajib.ganguly@ltimindtree.com",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^2.2.0",
