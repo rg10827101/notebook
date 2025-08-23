@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>setup npm package</title>
+      <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../page.css" />
+  </head>
+  <body>
+      <div class="container mt-3">
+          <p><small><em>Saved on: Saturday 23 August, 2025 at 7:38 pm</em></small></p>
+          <h1 style="text-transform: uppercase;">setup npm package</h1>
+          <hr/>
+          <section>
+const express = require('express');
+const bodyParser = require('body-parser');
+const fs = require('fs');
+const path = require('path');
+
+function createNoteApp({ port = 9999 } = {}) {
+    const app = express();
+    const PAGES_DIR = path.join(__dirname, 'pages');
+
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(express.static(path.join(__dirname, 'public')));
+    app.use('/pages', express.static(PAGES_DIR));
+
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname, 'index.html'));
+    });
+
+    app.get('/list-pages', (req, res) => {
+        fs.readdir(PAGES_DIR, (err, files) => {
+            if (err) return res.status(500).send('Error reading pages directory');
+            const htmlFiles = files.filter(file => file.endsWith('.html'));
+            res.json(htmlFiles);
+        });
+    });
+
+    app.post('/create-page', (req, res) => {
+        const { title, html } = req.body;
+        const safeTitle = title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+        const fileName = `${safeTitle}.html`;
+
+        const now = new Date();
+        const formattedDate = now.toLocaleString('en-IN', {
+            timeZone: 'Asia/Kolkata',
+            dateStyle: 'full',
+            timeStyle: 'short'
+        });
+
+        const fullHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css
+    <link rel="stylesheet" href="../page.css" />
+</head>
+<body>
+    <div class="container mt-3">
+        <p><small><em>Saved on: ${formattedDate}</em></small></p>
+        <h1 style="text-transform: uppercase;">${title}</h1>
+        <hr/>
+        ${html}
+    </div>
+</body>
+</html>`;
+
+        const outputPath = path.join(PAGES_DIR, fileName);
+        if (!fs.existsSync(PAGES_DIR)) fs.mkdirSync(PAGES_DIR);
+
+        fs.writeFile(outputPath, fullHtml, err => {
+            if (err) return res.status(500).send('Error creating page');
+            res.send(`Page created successfully! <a href="/pages/${fileName}" target="_blank">View Page</a>`);
+        });
+    });
+
+    app.delete('/delete-page/:pageName', (req, res) => {
+        const pageName = req.params.pageName;
+        const filePath = path.join(PAGES_DIR, pageName);
+
+        fs.unlink(filePath, err => {
+            if (err) return res.status(500).send('Error deleting page');
+            res.send('Page deleted');
+        });
+    });
+
+    app.listen(port, () => {
+        console.log(`RG Note App running at http://localhost:${port}`);
+    });
+
+    return app;
+}
+
+module.exports = createNoteApp;
+
+</section>
+
+<section>
+<p>Create index.js</p>
+
+const createNoteApp = require('./server');
+createNoteApp(); // Default port 9999
+
+</section>
+<section>
+<p>Update package.json </p>
+
+{
+  "name": "rg-note-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2"
+  },
+  "keywords": ["notes", "express", "html", "css", "node"],
+  "author": "Rajib Ganguly",
+  "license": "MIT"
+}
+
+</section>
+<section>
+<p>Pack and install</p>
+npm pack
+another project: npm install ./rg-note-app-1.0.0.tgz
+</section>
+<section>
+<p>Install directly from local folder<p>
+npm install /path/to/rg-note-app
+</section>
+<section>
+<p>Using npm link<p>
+npm link
+
+npm link rg-note-app
+
+</section>
+<section>
+<p>Using npm login<p>
+npm login
+npm publish
+ // then use without global
+npm install rg-note-app
+// if want global
+npm install -g rg-note-app
+rg-note-app
+
+
+</section>
+      </div>
+  </body>
+  </html>

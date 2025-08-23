@@ -5,3 +5,9 @@ body {
     font-style: normal; 
     color: #333;
 }
+
+section {
+    background-color: ivory;
+    border: 1px solid #ccc;
+    margin: 5px;
+}
