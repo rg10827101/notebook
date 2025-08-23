@@ -62,11 +62,12 @@ app.post('/create-page', (req, res) => {
       integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="../page.css" />
   </head>
   <body>
       <div class="container mt-3">
           <p><small><em>Saved on: ${formattedDate}</em></small></p>
-          <h1>${title}</h1>
+          <h1 style="text-transform: uppercase;">${title}</h1>
           <hr/>
           ${html}
       </div>

@@ -10,24 +10,42 @@
       integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./global.css" />
     <script src="./script.js" defer></script>
+    <script src="./color.js" defer></script>
   </head>
   <body>
     <div class="container-fluid">
-        <h1>Welcome to RG-Notes</h1>
-    <p>This is a simple web page with linked CSS and JavaScript files.</p>
+      <nav>
+        <div class="logo"><span>RG</span>-Notes 1.0</div>
+        <div id="theme-switcher" class="navbar-nav flex-row flex-wrap ms-md-auto text-bg-light">
+          <div class="p-2">Theme: </div>
+          <button id="default" data-theme="default" type="button" class="btn btn-light btn-sm">Default</button>
+          <button id="red" data-theme="theme-red" class="btn btn-light btn-sm">Red</button>
+          <button id="purple" data-theme="theme-purple" class="btn btn-light btn-sm">Purple</button>
+          <button id="green" data-theme="theme-green" class="btn btn-light btn-sm">Green</button>
+        </div>
+      </nav>
+      <hr>
 
     <div class="row g-5">
-      <div class="col-md-3">
-        <h2 class="text-body-emphasis">Starter projects</h2>
-        <ul id="pageList" class="list-unstyled ps-0"></ul>
+      <div class="p-4 col-md-3 id-left-sidebar">
+        <h5 class="text-secondary" style="position: relative">Existing pages: 
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 12px;" id="count">
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </h5>
+        <ul id="pageList" class="list-unstyled ps-0 list-group"></ul>
       </div>
-      <div class="col-md-9">
-        <h2 class="text-body-emphasis">Enter your notes (in html)</h2>
+      <div class="p-4 col-md-9 id-right-sidebar">
+        <h5 class="text-body-emphasis pb-4">Create page [in html]</h5>
 
         <form id="pageForm">
-          <label for="title" class="form-label">Enter Page Title:</label>
+          <label for="title" class="form-label">Enter Page:</label>
           <input
             type="text"
             id="title"
@@ -36,7 +54,7 @@
             placeholder="page tile excluding [.html]"
             required
           />
-          <label for="html" class="form-label">HTML Contents: </label>
+          <label for="html" class="form-label mt-4">HTML Contents: </label>
           <textarea
             id="html"
             name="html"
@@ -46,7 +64,7 @@
             placeholder="html format expected"
             required
           ></textarea>
-          <button type="submit" class="mt-1 btn btn-outline-primary">Submit</button>
+          <button type="submit" class="mt-4 btn btn-dark border-round">Create my page!</button>
         </form>
       </div>
     </div>

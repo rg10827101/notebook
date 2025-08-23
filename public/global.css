@@ -1,0 +1,82 @@
+html,
+body {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+nav .logo {
+    font-weight: 300;
+    font-size: 1.9rem;
+}
+nav .logo span {
+    font-weight: 700;
+}
+
+
+/***
+======================== THEMEs
+***/
+
+.default nav .logo {
+    color: #0d6efd;
+}
+.default .id-right-sidebar {
+    background: linear-gradient(45deg, #bde2fd, transparent);
+}
+.default .list-unstyled li a {
+    color: #0d6efd;
+}
+
+
+.theme-red nav .logo {
+    color: #ff1414;
+}
+.theme-red .id-right-sidebar {
+    background: linear-gradient(45deg, #ffcece, transparent);
+}
+.theme-red .list-unstyled li a {
+    color: #fd0d0d;
+}
+
+
+.theme-purple nav .logo {
+    color: #9707eb;
+}
+.theme-purple .id-right-sidebar {
+    background: linear-gradient(45deg, #eecefb, transparent);
+}
+.theme-purple .list-unstyled li a {
+    color: #a30bd1;
+}
+
+
+.theme-green nav .logo {
+    color: #10be04;
+}
+.theme-green .id-right-sidebar {
+    background: linear-gradient(45deg, #b7f7b3, transparent);
+}
+.theme-green .list-unstyled li a {
+    color: #10be04;
+}
+
+
+
+
+
+
+
+/***
+======================== SPECIAL CLASS
+***/
+
+.border-round {
+    border-radius: 999px;
+}
