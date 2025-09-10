@@ -1,8 +1,27 @@
 
-window.onload = loadPageList;
+// window.onload = ;
+
+window.onload = async function() {
+      await loadPage('./form.html');
+      await loadPageList();
+};
+
 
 
 const pageList = document.querySelector("#pageList");
+
+// Function to load content into the div
+    function loadPage(page) {
+      fetch(page)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('currPage').innerHTML = data;
+        })
+        .catch(error => {
+          document.getElementById('currPage').innerHTML = "<p>Error loading page.</p>";
+          console.error("Error loading page:", error);
+        });
+    }
 
 
 
