@@ -1,0 +1,13 @@
+html,
+body {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal; 
+    color: #333;
+}
+
+section {
+    background-color: ivory;
+    border: 1px solid #ccc;
+    margin: 5px;
+}
