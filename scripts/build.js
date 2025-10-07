@@ -69,3 +69,26 @@ for (const entry of fs.readdirSync(root)) {
 }
 
 console.log('Build complete.');
+
+// Bundle + minify server.js into single file using esbuild (if available)
+try {
+  const esbuild = require('esbuild');
+  const serverEntry = path.join(root, 'server.js');
+  if (fs.existsSync(serverEntry)) {
+    console.log('Bundling server.js with esbuild...');
+    esbuild.buildSync({
+      entryPoints: [serverEntry],
+      outfile: path.join(dist, 'server.js'),
+      bundle: true,
+      platform: 'node',
+      target: ['node16'],
+      minify: true,
+      sourcemap: false
+    });
+    console.log('Bundled dist/server.js');
+  } else {
+    console.log('No server.js found to bundle.');
+  }
+} catch (err) {
+  console.log('esbuild not available or failed to run — skipping bundle step.');
+}
