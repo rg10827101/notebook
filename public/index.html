@@ -15,9 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="./global.css" />
-    <!-- <script src="./script.js" defer></script> -->
-     <script type="module"src="./scripts/main.js" defer></script>
-    <script src="./scripts/color.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script type="module"src="./scripts/main.js" defer></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -33,7 +32,7 @@
       </nav>
       <hr>
 
-    <div class="row g-5">
+    <div class="row">
       <div class="p-4 col-md-3 id-left-sidebar">
         <h5 class="text-secondary" style="position: relative">Existing pages: 
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 12px;" id="count">
@@ -42,8 +41,24 @@
         </h5>
         <ul id="pageList" class="list-unstyled ps-0 list-group"></ul>
       </div>
-      <div class="p-4 col-md-9 id-right-sidebar">
-        <div id="currPage"></div>
+      <div class="p-4 col-md-9 col-xs-12 id-right-sidebar">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Form</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">View</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active p-4 bg-white" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+          <div id="currPage"></div>
+        </div>
+        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+          <div id="showPage"></div>
+        </div>
+        </div>
+        
       </div>
     </div>
     </div>

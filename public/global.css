@@ -80,3 +80,7 @@ nav .logo span {
 .border-round {
     border-radius: 999px;
 }
+
+.tab-content>.active.bg-white {
+    background: white;
+}
